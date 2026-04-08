@@ -1,0 +1,55 @@
+<!-- ════════════════════════════════════
+     pages/projects.html
+════════════════════════════════════ -->
+<section class="page active" id="projects">
+  <div class="page-header">
+    <div class="page-eyebrow">Portfolio</div>
+    <h1 class="page-title">My <em>Projects</em></h1>
+    <div class="page-divider"></div>
+    <p class="page-subtitle">A selection of work I'm proud of. Click any card to explore.</p>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="toggleProjectForm()">+ Add Project</button>
+  </div>
+
+  <!-- Add Project Form -->
+  <div class="add-project-form" id="project-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Project Title</label>
+        <input type="text" id="proj-title" placeholder="My Awesome Project" />
+      </div>
+      <div class="form-group">
+        <label>Project Link (URL)</label>
+        <input type="url" id="proj-link" placeholder="https://myproject.com" />
+      </div>
+    </div>
+    <div class="form-group" style="margin-bottom:16px;">
+      <label>Description</label>
+      <textarea id="proj-desc" placeholder="What does this project do?"></textarea>
+    </div>
+    <div class="form-group" style="margin-bottom:24px;">
+      <label>Upload Image</label>
+      <input type="file" id="proj-img" accept="image/*" />
+    </div>
+    <div class="inline-flex">
+      <button class="btn btn-primary" onclick="addProject()">Save Project</button>
+      <button class="btn btn-ghost" onclick="toggleProjectForm()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Project Cards -->
+  <div class="projects-grid" id="projects-grid">
+    <!-- Sample card — delete this when you add your own -->
+    <div class="project-card">
+      <button class="delete-btn" onclick="this.closest('.project-card').remove()">✕</button>
+      <div class="project-img-placeholder">🖼</div>
+      <div class="project-body">
+        <div class="project-title">Sample Project</div>
+        <div class="project-desc">A placeholder card. Add your own projects using the button above.</div>
+        <a class="project-link" href="#" target="_blank">↗ View Project</a>
+      </div>
+    </div>
+  </div>
+</section>
