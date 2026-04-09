@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-certificates',
-  imports: [],
   templateUrl: './certificates.html',
-  styleUrl: './certificates.css',
+  styleUrls: ['./certificates.css']
 })
-export class Certificates {}
+export class CertificatesComponent {
+  // your code here
+}

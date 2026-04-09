@@ -1,1 +1,18 @@
-<p>sidebar works!</p>
+<nav>
+  <div class="sidebar-header">
+    <h2>Portfolio</h2>
+  </div>
+  
+  <ul>
+    <li *ngFor="let link of navLinks">
+      <a [routerLink]="link.path" routerLinkActive="active">
+        <span class="icon">{{ link.icon }}</span>
+        <span>{{ link.label }}</span>
+      </a>
+    </li>
+  </ul>
+  
+  <div class="sidebar-footer">
+    <p>&copy; {{ currentYear }}</p>
+  </div>
+</nav>
