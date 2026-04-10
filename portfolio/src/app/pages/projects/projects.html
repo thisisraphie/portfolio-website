@@ -1,1 +1,159 @@
-<p>projects works!</p>
+<section class="projects">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="eyebrow">Portfolio</div>
+    <h1>My <em>Projects</em></h1>
+    <div class="divider"></div>
+    <p class="subtitle">A selection of work I'm proud of.</p>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="filters">
+      <button class="filter-btn" [class.active]="activeFilter() === 'all'"    (click)="setFilter('all')">All</button>
+      <button class="filter-btn" [class.active]="activeFilter() === 'dev'"    (click)="setFilter('dev')">Dev Projects</button>
+      <button class="filter-btn" [class.active]="activeFilter() === 'design'" (click)="setFilter('design')">Design Projects</button>
+    </div>
+    <button class="btn-primary" (click)="openForm()">+ Post Project</button>
+  </div>
+
+  <!-- Empty state -->
+  @if (filteredProjects.length === 0) {
+    <div class="empty">No projects yet. Hit <strong>+ Post Project</strong> to add one.</div>
+  }
+
+  <!-- Project Grid -->
+  <div class="grid">
+    @for (project of filteredProjects; track project.title; let i = $index) {
+
+      <!-- DEV CARD -->
+      @if (isDev(project)) {
+        <article class="card dev-card">
+          <button class="delete-btn" (click)="deleteProject(i)">✕</button>
+          <div class="card-type-badge">Dev</div>
+
+          @if (project.thumbnail) {
+            <img class="thumbnail" [src]="project.thumbnail" [alt]="project.title" />
+          }
+
+          @if (project.video) {
+            <video class="video" [src]="project.video" controls></video>
+          }
+
+          <div class="card-body">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+            @if (project.link) {
+              <a class="card-link" [href]="project.link" target="_blank">↗ View Project</a>
+            }
+          </div>
+        </article>
+      }
+
+      <!-- DESIGN CARD -->
+      @if (isDesign(project)) {
+        <article class="card design-card">
+          <button class="delete-btn" (click)="deleteProject(i)">✕</button>
+          <div class="card-type-badge design">Design</div>
+
+          <!-- Carousel -->
+          <div class="carousel">
+            <img [src]="project.photos[project.currentPhoto]" [alt]="project.title" />
+            @if (project.photos.length > 1) {
+              <button class="carousel-btn prev" (click)="prevPhoto(project)">‹</button>
+              <button class="carousel-btn next" (click)="nextPhoto(project)">›</button>
+              <div class="carousel-dots">
+                @for (photo of project.photos; track $index) {
+                  <span class="dot" [class.active]="$index === project.currentPhoto"></span>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="card-body">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+            @if (project.link) {
+              <a class="card-link" [href]="project.link" target="_blank">↗ View Design</a>
+            }
+          </div>
+        </article>
+      }
+
+    }
+  </div>
+
+</section>
+
+<!-- ── POST FORM MODAL ── -->
+@if (showForm()) {
+  <div class="modal-backdrop" (click)="closeForm()"></div>
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Post a Project</h2>
+      <button class="close-btn" (click)="closeForm()">✕</button>
+    </div>
+
+    <!-- Type toggle -->
+    <div class="type-toggle">
+      <button [class.active]="formType() === 'dev'"    (click)="formType.set('dev')">Dev Project</button>
+      <button [class.active]="formType() === 'design'" (click)="formType.set('design')">Design Project</button>
+    </div>
+
+    <!-- Shared fields -->
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" [(ngModel)]="form.title" placeholder="Project name" />
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea [(ngModel)]="form.description" placeholder="What is this project about?"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Link (URL)</label>
+      <input type="url" [(ngModel)]="form.link" placeholder="https://..." />
+    </div>
+
+    <!-- Dev-only fields -->
+    @if (formType() === 'dev') {
+      <div class="form-group">
+        <label>Thumbnail</label>
+        <input type="file" accept="image/*" (change)="onThumbnail($event)" />
+        @if (thumbnailPreview()) {
+          <img class="preview-img" [src]="thumbnailPreview()" />
+        }
+      </div>
+      <div class="form-group">
+        <label>Video Demo</label>
+        <input type="file" accept="video/*" (change)="onVideo($event)" />
+        @if (videoPreview()) {
+          <video class="preview-img" [src]="videoPreview()" controls></video>
+        }
+      </div>
+    }
+
+    <!-- Design-only fields -->
+    @if (formType() === 'design') {
+      <div class="form-group">
+        <label>Photos <span class="muted">(select as many as you want)</span></label>
+        <input type="file" accept="image/*" multiple (change)="onPhotos($event)" />
+        @if (photoPreviews().length > 0) {
+          <div class="photo-preview-grid">
+            @for (photo of photoPreviews(); track $index; let i = $index) {
+              <div class="photo-preview-item">
+                <img [src]="photo" />
+                <button (click)="removePhoto(i)">✕</button>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+
+    <div class="modal-footer">
+      <button class="btn-ghost" (click)="closeForm()">Cancel</button>
+      <button class="btn-primary" (click)="submit()">Post Project</button>
+    </div>
+  </div>
+}
