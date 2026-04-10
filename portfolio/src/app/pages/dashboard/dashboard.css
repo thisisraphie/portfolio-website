@@ -1,0 +1,164 @@
+.dashboard {
+  padding: 60px 64px;
+  animation: fadeIn 0.35s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Hero ── */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  margin-bottom: 56px;
+}
+
+.greeting {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hero-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+
+.hero-text p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 1rem;
+  font-weight: 300;
+  max-width: 540px;
+}
+
+.divider {
+  width: 48px;
+  height: 2px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+.hero-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--surface2), transparent);
+}
+
+.avatar {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: var(--accent);
+  margin: 0 auto 20px;
+}
+
+.hero-card h3 {
+  color: var(--accent);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+}
+
+.role {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.stat { text-align: center; }
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Skills ── */
+.skills-section { margin-bottom: 48px; }
+
+.skills-section h2,
+.about-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  margin-bottom: 24px;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tag {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 7px 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.skill-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── About ── */
+.about-section p {
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .dashboard { padding: 40px 28px; }
+  .hero-grid { grid-template-columns: 1fr; }
+}

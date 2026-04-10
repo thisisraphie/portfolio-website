@@ -2,9 +2,16 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
+  standalone: true,
   templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.css']
+  styleUrl: './dashboard.css'
 })
 export class DashboardComponent {
-  // your code here
+  skills = [
+    'UI/UX Design',
+    'HTML & CSS',
+    'JavaScript',
+    'React',
+    'Figma',
+  ];
 }
