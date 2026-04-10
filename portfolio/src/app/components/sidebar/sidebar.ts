@@ -16,6 +16,6 @@ export class SidebarComponent {
     { path: '/dashboard', label: 'Dashboard', icon: '◈' },
     { path: '/projects',  label: 'Projects',  icon: '◫' },
     { path: '/blog',      label: 'Blog',       icon: '◱' },
-    { path: '/certifications',   label: 'Certifications',    icon: '◎' },
+    { path: '/certificates',   label: 'Certificates',    icon: '◎' },
   ];
 }

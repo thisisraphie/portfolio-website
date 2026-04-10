@@ -1,18 +1,21 @@
-<nav>
-  <div class="sidebar-header">
-    <h2>Portfolio</h2>
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <!-- TODO: Replace with actual logo image or SVG -->
+    <div class="handle">raphie.studio</div>
+    <div class="tagline">Portfolio</div>
   </div>
   
-  <ul>
-    <li *ngFor="let link of navLinks">
-      <a [routerLink]="link.path" routerLinkActive="active">
-        <span class="icon">{{ link.icon }}</span>
-        <span>{{ link.label }}</span>
-      </a>
-    </li>
-  </ul>
+  <nav>
+    <a *ngFor="let link of navLinks" 
+       [routerLink]="link.path" 
+       routerLinkActive="active" 
+       class="nav-link">
+      <span class="nav-icon">{{ link.icon }}</span>
+      <span>{{ link.label }}</span>
+    </a>
+  </nav>
   
   <div class="sidebar-footer">
     <p>&copy; {{ currentYear }}</p>
   </div>
-</nav>
+</aside>
